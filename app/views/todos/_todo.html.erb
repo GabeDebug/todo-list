@@ -1,12 +1,10 @@
-<div id="<%= dom_id todo %>">
-  <div>
-    <strong>Name:</strong>
-    <%= todo.name %>
-  </div>
-
-  <div>
-    <strong>Description:</strong>
-    <%= todo.description %>
-  </div>
-
+<div
+  id="<%= dom_id todo %>"
+  class="
+    bg-white border border-slate-100 rounded-2xl p-5 shadow-sm hover:shadow-md
+    transition
+  "
+>
+  <h3 class="text-base font-bold text-slate-800 mb-1"><%= todo.name %></h3>
+  <p class="text-sm text-slate-500 leading-relaxed"><%= todo.description %></p>
 </div>

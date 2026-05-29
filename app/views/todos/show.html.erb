@@ -1,10 +1,59 @@
-<p style="color: green"><%= notice %></p>
+<% content_for :title, @todo.name %>
 
-<%= render @todo %>
+<% if notice.present? %>
+  <div
+    class="
+      mb-6 bg-emerald-50 border border-emerald-200 text-emerald-700 text-sm rounded-xl
+      px-4 py-3
+    "
+  >
+    <%= notice %>
+  </div>
+<% end %>
 
-<div>
-  <%= link_to "Edit this todo", edit_todo_path(@todo) %> |
-  <%= link_to "Back to todos", todos_path %>
+<div class="max-w-lg mx-auto">
+  <div class="mb-6 flex items-center gap-3">
+    <%= link_to todos_path, class: "text-slate-400 hover:text-slate-600 transition" do %>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        class="w-5 h-5"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke="currentColor"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          stroke-width="2"
+          d="M15 19l-7-7 7-7"
+        />
+      </svg>
+    <% end %>
+    <h1 class="text-2xl font-extrabold text-slate-800 tracking-tight">Detalhes da tarefa</h1>
+  </div>
 
-  <%= button_to "Destroy this todo", @todo, method: :delete %>
+  <div class="bg-white border border-slate-100 rounded-2xl shadow-sm p-6 mb-4">
+    <%= render @todo %>
+  </div>
+
+  <div class="flex items-center justify-between">
+    <div class="flex gap-4 text-sm">
+      <%= link_to "Editar",
+      edit_todo_path(@todo),
+      class: "text-indigo-600 hover:text-indigo-800 font-medium transition" %>
+      <%= link_to "Voltar",
+      todos_path,
+      class: "text-slate-500 hover:text-slate-700 font-medium transition" %>
+    </div>
+
+    <%= button_to "Excluir",
+    @todo,
+    method: :delete,
+    class:
+      "text-sm bg-red-50 hover:bg-red-100 text-red-600 font-semibold
+                    px-4 py-2 rounded-xl transition cursor-pointer border border-red-200",
+    data: {
+      turbo_confirm: "Tem certeza que quer excluir?",
+    } %>
+  </div>
 </div>
